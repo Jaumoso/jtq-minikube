@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jtq-backend
+  labels:
+    name: jtq-backend
+spec:
+  containers:
+  - name: backend
+    image: ghcr.io/jaumoso/jump-the-queue/jtq-backend:latest
+    ports:
+      - containerPort: 8081
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jtq-frontend
+  labels:
+    name: jtq-frontend
+spec:
+  containers:  
+  - name: frontend
+    image: ghcr.io/jaumoso/jump-the-queue/jtq-frontend:latest
+    ports:
+      - containerPort: 4200
