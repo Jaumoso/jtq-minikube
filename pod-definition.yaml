@@ -4,6 +4,7 @@ metadata:
   name: jtq-backend
   labels:
     name: jtq-backend
+  namespace: jtq
 spec:
   containers:
   - name: backend
@@ -17,6 +18,7 @@ metadata:
   name: jtq-frontend
   labels:
     name: jtq-frontend
+  namespace: jtq
 spec:
   containers:  
   - name: frontend
