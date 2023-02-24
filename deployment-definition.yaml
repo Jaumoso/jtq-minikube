@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jtq-frontend
+  namespace: jtq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jtq-frontend
+  template:
+    metadata:
+      labels:
+        app: jtq-frontend
+    spec:
+      containers:
+      - name: jtq-frontend
+        image: ghcr.io/jaumoso/jump-the-queue/jtq-frontend:latest
+        ports:
+        - containerPort: 4200
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jtq-backend
+  namespace: jtq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jtq-backend
+  template:
+    metadata:
+      labels:
+        app: jtq-backend
+    spec:
+      containers:
+      - name: jtq-backend
+        image: ghcr.io/jaumoso/jump-the-queue/jtq-backend:latest
+        ports:
+        - containerPort: 8081
