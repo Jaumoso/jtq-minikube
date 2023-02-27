@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: jtq-frontend-replicationcontroller
+spec:
+  replicas: 4
+  selector:
+    app: jtq-frontend
+  template:
+    metadata:
+      name: jtq-frontend
+      labels:
+        app: jtq-frontend
+    spec:
+      containers:
+        - name: jtq-frontend
+          image: ghcr.io/jaumoso/jump-the-queue/jtq-frontend:latest
+          ports:
+            - containerPort: 4200
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: jtq-backend-replicationcontroller
+spec:
+  replicas: 2
+  selector:
+    app: jtq-backend
+  template:
+    metadata:
+      name: jtq-backend
+      labels:
+        app: jtq-backend
+    spec:
+      containers:
+        - name: jtq-backend
+          image: ghcr.io/jaumoso/jump-the-queue/jtq-backend:latest
+          ports:
+            - containerPort: 8081

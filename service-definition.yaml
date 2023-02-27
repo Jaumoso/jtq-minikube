@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jtq-frontend
+spec:
+  selector:
+    app: jtq-frontend
+  ports:
+  - port: 4200
+    targetPort: 4200
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jtq-backend
+spec:
+  selector:
+    app: jtq-backend
+  ports:
+  - port: 8081
+    targetPort: 8081
