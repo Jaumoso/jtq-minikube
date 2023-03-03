@@ -2,17 +2,18 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: jtq-frontend-replicaset
+  namespace: jtq
   labels:
-    app: jtq-frontend
+    app: jtq
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: jtq-frontend
+      app: jtq
   template:
     metadata:
       labels:
-        app: jtq-frontend
+        app: jtq
     spec:
       containers:
       - name: jtq-frontend
@@ -23,18 +24,43 @@ spec:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: jtq-backend-replicaset
+  name: jtq-nginx
+  namespace: jtq
   labels:
-    app: jtq-backend
+    app: jtq
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: jtq-backend
+      app: jtq
   template:
     metadata:
       labels:
-        app: jtq-backend
+        app: jtq
+    spec:
+      containers:
+      - name: nginx
+        image: docker.io/nginx:stable
+        ports:
+          - containerPort: 80
+          - containerPort: 443
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  namespace: jtq
+  name: jtq-backend
+  labels:
+    app: jtq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jtq
+  template:
+    metadata:
+      labels:
+        app: jtq
     spec:
       containers:
       - name: jtq-backend

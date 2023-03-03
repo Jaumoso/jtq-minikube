@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jtq
+  namespace: jtq
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /jumpthequeue/services/rest/
+            pathType: Prefix
+            backend:
+              service:
+                name: jtq-backend-service
+                port:
+                  number: 8081
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jtq-frontend-service
+                port:
+                  number: 80

@@ -1,23 +1,32 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: jtq-frontend
+  name: jtq-frontend-service
+  namespace: jtq
 spec:
+  type: NodePort
   selector:
-    app: jtq-frontend
+    name: jtq-frontend
     type: front-end
   ports:
-  - port: 4200
-    targetPort: 4200
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: jtq-backend
+  name: jtq-backend-service
+  namespace: jtq
 spec:
+  type: NodePort
   selector:
-    app: jtq-backend
+    name: jtq-backend
     type: back-end
   ports:
-  - port: 8081
+  - name: http
+    port: 8081
     targetPort: 8081
+    protocol: TCP
+
