@@ -7,7 +7,6 @@ spec:
   type: NodePort
   selector:
     name: jtq-frontend
-    type: front-end
   ports:
   - name: http
     port: 80
@@ -23,7 +22,6 @@ spec:
   type: NodePort
   selector:
     name: jtq-backend
-    type: back-end
   ports:
   - name: http
     port: 8081

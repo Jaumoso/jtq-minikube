@@ -10,7 +10,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: jtq-frontend
+     name: jtq-frontend
   template:
     metadata:
       labels:
